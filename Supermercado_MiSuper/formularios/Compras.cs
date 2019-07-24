@@ -103,6 +103,7 @@ namespace Supermercado_MiSuper.formularios
                                 comando.Parameters.AddWithValue("@IdCliente", ClaseUser.Idecliente);
                                 comando.ExecuteNonQuery();
 
+
                                 MessageBox.Show(" Datos Insertado  ");
                             }
 
