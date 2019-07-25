@@ -130,12 +130,15 @@ namespace Supermercado_MiSuper.formularios
                         if (conexion.Estado == 1)
                         {
                             tabla.Reset();
-                            SqlDataAdapter adaptador = new SqlDataAdapter(string.Format("select * from REGISTRO.Factura where idCliente='{0}' and idEmpleado='{1}' ORDER BY fecha DESC", txtide.Text, txtidemp.Text), conexion.Conexion);
+                            string query = string.Format(("select MAX(idFactura) as id from REGISTRO.Factura "), txtide.Text, txtidemp.Text);
+                            SqlCommand comando = new SqlCommand(query, conexion.Conexion);
+                            comando.CommandType = CommandType.Text;
+                            SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                             adaptador.Fill(tabla);
                             if (tabla.Rows.Count > 0)
                             {
 
-                                ClaseUser.Idfactura = Convert.ToInt32(tabla.Rows[0][1]);
+                                ClaseUser.Idfactura = Convert.ToInt32(tabla.Rows[0][0]);
                                 MessageBox.Show("{0}", ClaseUser.Idfactura.ToString());
                             }
                             else
