@@ -17,11 +17,14 @@ namespace Supermercado_MiSuper.formularios
         Clase_Conectar conexion = new Clase_Conectar();
         Clase_Datos dat = new Clase_Datos();
         DataTable tabla;
+        int c = 0;
 
         public Compras()
         {
             InitializeComponent();
             tabla = new DataTable();
+            
+            
         }
 
         private void Btnbuscar_Click(object sender, EventArgs e)
@@ -37,6 +40,7 @@ namespace Supermercado_MiSuper.formularios
                 dat.buscarcliente();
                 if (dat.Sec == 1)
                 {
+                    txtidemp.Text = ClaseUser.Id.ToString();
                     txtide.Text = ClaseUser.Id.ToString();
                     txtnombre.Text = ClaseUser.Nombrecliente;
                 }
@@ -50,6 +54,7 @@ namespace Supermercado_MiSuper.formularios
 
         private void Compras_Load(object sender, EventArgs e)
         {
+            txtidemp.Text = ClaseUser.Id.ToString();
             if (txtide.Text == "") { dat.cargarEmpleado(dgvproductos); }
             else
             {
@@ -85,8 +90,9 @@ namespace Supermercado_MiSuper.formularios
             //CREAR LAFACTURA
             if (txtcodigo.Text != "")
             {
-                if (ClaseUser.Idfactura != 0)
+                if (c == 0)
                 {
+                    c++;
                     try
                     {
                         conexion.Abrirconexion();
@@ -99,8 +105,8 @@ namespace Supermercado_MiSuper.formularios
                             SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                             using (adaptador)
                             {
-                                comando.Parameters.AddWithValue("@Empleado", ClaseUser.Id);
-                                comando.Parameters.AddWithValue("@IdCliente", ClaseUser.Idecliente);
+                                comando.Parameters.AddWithValue("@Empleado", txtidemp.Text);
+                                comando.Parameters.AddWithValue("@IdCliente", txtide.Text);
                                 comando.ExecuteNonQuery();
 
 
@@ -124,7 +130,7 @@ namespace Supermercado_MiSuper.formularios
                         if (conexion.Estado == 1)
                         {
                             tabla.Reset();
-                            SqlDataAdapter adaptador = new SqlDataAdapter(string.Format("select * from REGISTRO.Factura where idCliente='{0}' and idEmpleado='{1}'", ClaseUser.Idecliente, ClaseUser.Id), conexion.Conexion);
+                            SqlDataAdapter adaptador = new SqlDataAdapter(string.Format("select * from REGISTRO.Factura where idCliente='{0}' and idEmpleado='{1}' ORDER BY fecha DESC", txtide.Text, txtidemp.Text), conexion.Conexion);
                             adaptador.Fill(tabla);
                             if (tabla.Rows.Count > 0)
                             {
@@ -204,11 +210,20 @@ namespace Supermercado_MiSuper.formularios
 
         private void Dgvproductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(txtide.Text=="")
+            {
+                txtide.Text = this.dgvproductos.CurrentRow.Cells[0].Value.ToString();
+                txtnombre.Text = this.dgvproductos.CurrentRow.Cells[1].Value.ToString();
+            }
+            else
+            {
                 //dat.cargarDatos(dgvproductos);
                 //var row = (sender as DataGridView).CurrentRow;
                 txtcodigo.Text = this.dgvproductos.CurrentRow.Cells[0].Value.ToString();
                 txtnombreprod.Text = this.dgvproductos.CurrentRow.Cells[3].Value.ToString();
                 txtprecio.Text = this.dgvproductos.CurrentRow.Cells[6].Value.ToString();
+            }
+                
         }
     }
 }

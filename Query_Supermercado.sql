@@ -134,7 +134,8 @@ CREATE TABLE REGISTRO.Factura
  idCliente INT NOT NULL,
  idEmpleado INT NOT NULL,
  fecha DATETIME DEFAULT GETDATE(),
- total DECIMAL(10,2) NULL
+ total DECIMAL(10,2) NULL 
+ --total DECIMAL(10,2) NULL
 )
 
 CREATE TABLE REGISTRO.DetalleFactura
@@ -612,42 +613,60 @@ GO
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --AGREGAR FACTURA
-
 CREATE PROCEDURE AGREGARFACTURA @Empleado INT, @IdCliente INT 
 AS
 begin TRANSACTION
 	BEGIN TRY
-		DECLARE @idFactura INT;
+		--DECLARE @idFactura INT;
 		    IF EXISTS(SELECT * FROM PERSONA.Empleado WHERE idEmpleado=@Empleado) 
 		     BEGIN
 			  IF EXISTS(SELECT * FROM PERSONA.Cliente WHERE idCliente=@IdCliente)
 		       BEGIN
 
-			   DECLARE @CONTADOR INT;
+			  -- DECLARE @CONTADOR INT;
 			   INSERT INTO REGISTRO.Factura (idCliente, idEmpleado) 
 			   VALUES (@IdCliente, @Empleado);
 
-			   SET @idFactura=(SELECT idFactura FROM Registro.Factura WHERE idCliente=@IdCliente);
-			   INSERT INTO REGISTRO.Movimiento(operacion, tabla, descripcion, encargado) 
-			   VALUES ('SE AGREGO UNA FACTURA: ' + CAST (@IdFactura AS VARCHAR) + ' AL CLIENTE : ' + CAST (@IdCliente AS VARCHAR) ,'FACTURA', 'INSERT CORRECTO', @Empleado);
+			   --SET @idFactura=(SELECT idFactura FROM Registro.Factura WHERE idCliente=@IdCliente);
+			   --INSERT INTO REGISTRO.Movimiento(operacion, tabla, descripcion, encargado) 
+			   --VALUES ('SE AGREGO UNA FACTURA: ' + CAST (@IdFactura AS VARCHAR) + ' AL CLIENTE : ' + CAST (@IdCliente AS VARCHAR) ,'FACTURA', 'INSERT CORRECTO', @Empleado);
 
-			   IF ISNULL((SELECT vecesCompra FROM PERSONA.Cliente WHERE IdCliente=@IdCliente),0)=0 
-			   BEGIN
-				SET @CONTADOR=0;
-			   END
-			    ELSE
-			   BEGIN
-					SET @CONTADOR=(SELECT vecesCompra FROM PERSONA.Cliente WHERE idCliente=@IdCliente); 
-			   END
-			   UPDATE PERSONA.Cliente SET  vecesCompra=@CONTADOR+1 WHERE idCliente=@idCliente; 
-			   IF (SELECT estadoCliente FROM PERSONA.Cliente WHERE idCliente=@idCliente)='INACTIVO/A' 
-			   BEGIN
-				UPDATE PERSONA.Cliente SET estadoCliente='ACTIVO/A' WHERE idCliente=@idCliente;
-			   END
+			   --IF ISNULL((SELECT vecesCompra FROM PERSONA.Cliente WHERE IdCliente=@IdCliente),0)=0 
+			   --BEGIN
+				--SET @CONTADOR=0;
+			   --END
+			    --ELSE
+			   --BEGIN
+				--	SET @CONTADOR=(SELECT vecesCompra FROM PERSONA.Cliente WHERE idCliente=@IdCliente); 
+			   --END
+			   --UPDATE PERSONA.Cliente SET  vecesCompra=@CONTADOR+1 WHERE idCliente=@idCliente; 
+			   --IF (SELECT estadoCliente FROM PERSONA.Cliente WHERE idCliente=@idCliente)='INACTIVO/A' 
+			--   BEGIN
+			--	UPDATE PERSONA.Cliente SET estadoCliente='ACTIVO/A' WHERE idCliente=@idCliente;
+			  -- END
 		 END
 		END
 		COMMIT
 END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+	END CATCH
+GO
+
+-----PROCEDIMIENTO ACTUALIZAR FACTURA
+CREATE PROCEDURE ACTUALIZARFACTURA  @IdFactura INT , @total DECIMAL(10,2)
+AS
+BEGIN TRANSACTION 
+	BEGIN TRY
+			IF exists(SELECT * FROM REGISTRO.Factura WHERE idFactura=@IdFactura)
+			BEGIN
+			UPDATE REGISTRO.Factura SET total = @total  WHERE idFactura=@IdFactura;
+			 /*INSERT INTO REGISTRO.MOVIMIENTO(operacion, tabla, descripcion, encargado)
+			 VALUES ('SE ACTUALIZO LA FACTURA:' , 'FACTURA', 'ACTUALIZACIÓN EXITOSA', @Empleado);*/
+			END
+		
+		COMMIT TRANSACTION
+	END TRY
 	BEGIN CATCH
 		ROLLBACK TRANSACTION
 	END CATCH
@@ -702,7 +721,7 @@ GO
 
 --Agregar un Empleado en la tabla REGISTROS.Empleado(nombreEmpleado, apellidoEmpleado, fechaIngreso, puesto, sexo, telefono, direccion, correoEmpleado)
 
-EXEC AGREGAREMPLEADO 'Bryan', 'Flanders', '09/09/99', 'Gerente', 'M', '96878765','San Miguel','Mfr@gmail.com'
+EXEC AGREGAREMPLEADO 'Bryan', 'alee', '09/09/99', 'Gerente', 'M', '96878765','San Miguel','Mfr@gmail.com'
 go
 
 EXEC ACTUALIZAREMPLEADO  01, 02, 'ned1', 'Flanders', '09/09/99', 'Gerente', 'M', '96878765','San Miguel','Mfr@gmail.com'
@@ -716,7 +735,7 @@ go
 
 --Agregar un Cliente en la tabla REGISTROS.Cliente (Identidad del empleado, nombreCliente, apellidoCliente, identidad, sexo, telefono, direccion, correoCliente)
 
-EXEC AGREGARCLIENTE 01,'Peperfr', 'Hernandéz', '0313199900418', 'M', '97895670', 'Comayaguad', 'Crishy@yahoo.com'
+EXEC AGREGARCLIENTE 01,'carlos', 'manuel', '25455555', 'M', '965215', 'tegus', 'Crishy@yahoo.com'
 go
 
 EXEC ACTUALIZARCLIENTE 01,'Peperfr', 'Hernandézz', '0313199900418','M', '97895670', 'Comayagua', 'Crishy@yahoo.com' 
@@ -747,7 +766,7 @@ go
 --Agregar un Cliente en la tabla PRODUCTO.CaterogoriaProducto (Identidad del empleado, nombre de la categoria)
 
 
-EXEC AGREGARCATEGORIAPRODUCTO  01,'Alimentos'
+EXEC AGREGARCATEGORIAPRODUCTO  01,'alimentos'
 go
 
 EXEC  ACTUALIZARCATEGORIAPRODUCTO 01,01,'Alimentos Procesados'
@@ -761,7 +780,7 @@ go
 
 --Agregar un Proveedor en la tabla PRODUCTO.Producto(empleado, nombre proveedor, telefono, celular, ubicacion, descripcion, correo)
 
-EXEC AGREGARPROVEEDOR 01,'Distribuidoraas Lopez', '27730947', '98765431', 'San Pedro Sulas', 'Eficiente', 'Lopez@gmail.com'
+EXEC AGREGARPROVEEDOR 01,' carnes', '25566', '2526', 'San Sulas', 'clase', 'Lopez@gmail.com'
 go
 
 EXEC ACTUALIZARPROVEEDOR  01, 01,'Distribuidora Hernandez', '27730987', '98765432', 'San Pedro Sula', 'Excelente', 'Lopez@gmail.com'
@@ -777,7 +796,7 @@ go
 
 --Agregar un Producto en la tabla PRODUCTO.Producto(empleado,id Proveedor, id categoria Producto, nombreProducto,stock, precio, marca, fecha de Caducidad)
 
-EXEC AGREGARPRODUCTO 01,01,01,'arroz', 25, 9.00, 'progreso', '07/06/01'
+EXEC AGREGARPRODUCTO 01,02,02,'carnes', 25, 45.00, 'corral', '07/06/01'
 go
 
 EXEC ACTUALIZARPRODUCTO  01, 01,01,01 ,'Pasta Italiana', 14, 15.00, 'Mi Pasta', '12/01/02'
@@ -800,7 +819,7 @@ go
 
 --Agregar Factura (IdEmpleado, IdCliente)
 
-EXEC AGREGARFACTURA 01,01
+EXEC AGREGARFACTURA 2,1
 go
 
 
@@ -826,10 +845,13 @@ GO
 SELECT * FROM PRODUCTO.Producto
 GO
 
-SELECT * FROM REGISTRO.Factura
+SELECT * from REGISTRO.Factura
 GO
 
+select * from REGISTRO.Factura where idCliente=1 and idEmpleado=1
+go
 
+delete 
 
 SELECT * FROM REGISTRO.DetalleFactura
 GO
