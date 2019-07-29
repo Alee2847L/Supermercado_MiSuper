@@ -37,23 +37,23 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pblimpiar = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtprecio = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtfecha = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtmarca = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtsto = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtnombreprod = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtidcat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtidprovee = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnactualizar = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.txtestado = new System.Windows.Forms.TextBox();
+            this.txtidcat = new System.Windows.Forms.MaskedTextBox();
+            this.txtsto = new System.Windows.Forms.MaskedTextBox();
+            this.txtprecio = new System.Windows.Forms.MaskedTextBox();
+            this.txtfecha = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,7 +91,7 @@
             this.btnbuscar.Location = new System.Drawing.Point(612, 388);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(96, 59);
-            this.btnbuscar.TabIndex = 75;
+            this.btnbuscar.TabIndex = 12;
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.Btnbuscar_Click);
             // 
@@ -103,7 +103,7 @@
             this.btneliminar.Location = new System.Drawing.Point(510, 388);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(96, 59);
-            this.btneliminar.TabIndex = 74;
+            this.btneliminar.TabIndex = 11;
             this.btneliminar.UseVisualStyleBackColor = true;
             this.btneliminar.Click += new System.EventHandler(this.Btneliminar_Click);
             // 
@@ -115,7 +115,7 @@
             this.btnactuali.Location = new System.Drawing.Point(404, 388);
             this.btnactuali.Name = "btnactuali";
             this.btnactuali.Size = new System.Drawing.Size(96, 59);
-            this.btnactuali.TabIndex = 73;
+            this.btnactuali.TabIndex = 10;
             this.btnactuali.UseVisualStyleBackColor = true;
             this.btnactuali.Click += new System.EventHandler(this.Btnactuali_Click);
             // 
@@ -127,7 +127,7 @@
             this.btnguardar.Location = new System.Drawing.Point(302, 388);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(96, 59);
-            this.btnguardar.TabIndex = 72;
+            this.btnguardar.TabIndex = 9;
             this.btnguardar.UseVisualStyleBackColor = true;
             this.btnguardar.Click += new System.EventHandler(this.Btnguardar_Click);
             // 
@@ -154,20 +154,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtfecha);
+            this.groupBox1.Controls.Add(this.txtprecio);
+            this.groupBox1.Controls.Add(this.txtsto);
+            this.groupBox1.Controls.Add(this.txtidcat);
             this.groupBox1.Controls.Add(this.btnactualizar);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtestado);
-            this.groupBox1.Controls.Add(this.txtprecio);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtfecha);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtmarca);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtsto);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtnombreprod);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtidcat);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtidprovee);
             this.groupBox1.Controls.Add(this.label1);
@@ -178,13 +178,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
             // 
-            // txtprecio
-            // 
-            this.txtprecio.Location = new System.Drawing.Point(491, 97);
-            this.txtprecio.Name = "txtprecio";
-            this.txtprecio.Size = new System.Drawing.Size(100, 20);
-            this.txtprecio.TabIndex = 53;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -193,13 +186,6 @@
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 52;
             this.label9.Text = "precio";
-            // 
-            // txtfecha
-            // 
-            this.txtfecha.Location = new System.Drawing.Point(492, 168);
-            this.txtfecha.Name = "txtfecha";
-            this.txtfecha.Size = new System.Drawing.Size(100, 20);
-            this.txtfecha.TabIndex = 49;
             // 
             // label7
             // 
@@ -215,7 +201,7 @@
             this.txtmarca.Location = new System.Drawing.Point(492, 129);
             this.txtmarca.Name = "txtmarca";
             this.txtmarca.Size = new System.Drawing.Size(100, 20);
-            this.txtmarca.TabIndex = 47;
+            this.txtmarca.TabIndex = 7;
             // 
             // label6
             // 
@@ -225,13 +211,6 @@
             this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 46;
             this.label6.Text = "Marca";
-            // 
-            // txtsto
-            // 
-            this.txtsto.Location = new System.Drawing.Point(492, 52);
-            this.txtsto.Name = "txtsto";
-            this.txtsto.Size = new System.Drawing.Size(45, 20);
-            this.txtsto.TabIndex = 44;
             // 
             // label4
             // 
@@ -247,7 +226,7 @@
             this.txtnombreprod.Location = new System.Drawing.Point(183, 55);
             this.txtnombreprod.Name = "txtnombreprod";
             this.txtnombreprod.Size = new System.Drawing.Size(100, 20);
-            this.txtnombreprod.TabIndex = 5;
+            this.txtnombreprod.TabIndex = 1;
             // 
             // label3
             // 
@@ -257,13 +236,6 @@
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Nombre Producto";
-            // 
-            // txtidcat
-            // 
-            this.txtidcat.Location = new System.Drawing.Point(183, 99);
-            this.txtidcat.Name = "txtidcat";
-            this.txtidcat.Size = new System.Drawing.Size(100, 20);
-            this.txtidcat.TabIndex = 3;
             // 
             // label2
             // 
@@ -279,7 +251,7 @@
             this.txtidprovee.Location = new System.Drawing.Point(183, 145);
             this.txtidprovee.Name = "txtidprovee";
             this.txtidprovee.Size = new System.Drawing.Size(100, 20);
-            this.txtidprovee.TabIndex = 1;
+            this.txtidprovee.TabIndex = 3;
             // 
             // label1
             // 
@@ -317,7 +289,39 @@
             this.txtestado.Location = new System.Drawing.Point(182, 186);
             this.txtestado.Name = "txtestado";
             this.txtestado.Size = new System.Drawing.Size(100, 20);
-            this.txtestado.TabIndex = 64;
+            this.txtestado.TabIndex = 4;
+            // 
+            // txtidcat
+            // 
+            this.txtidcat.Location = new System.Drawing.Point(182, 95);
+            this.txtidcat.Mask = "000";
+            this.txtidcat.Name = "txtidcat";
+            this.txtidcat.Size = new System.Drawing.Size(43, 20);
+            this.txtidcat.TabIndex = 2;
+            // 
+            // txtsto
+            // 
+            this.txtsto.Location = new System.Drawing.Point(492, 55);
+            this.txtsto.Mask = "0000";
+            this.txtsto.Name = "txtsto";
+            this.txtsto.Size = new System.Drawing.Size(36, 20);
+            this.txtsto.TabIndex = 5;
+            // 
+            // txtprecio
+            // 
+            this.txtprecio.Location = new System.Drawing.Point(492, 94);
+            this.txtprecio.Mask = "00000";
+            this.txtprecio.Name = "txtprecio";
+            this.txtprecio.Size = new System.Drawing.Size(59, 20);
+            this.txtprecio.TabIndex = 6;
+            // 
+            // txtfecha
+            // 
+            this.txtfecha.Location = new System.Drawing.Point(492, 172);
+            this.txtfecha.Mask = "00/00/0000";
+            this.txtfecha.Name = "txtfecha";
+            this.txtfecha.Size = new System.Drawing.Size(76, 20);
+            this.txtfecha.TabIndex = 8;
             // 
             // Producto
             // 
@@ -356,22 +360,22 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pblimpiar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtprecio;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtfecha;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtmarca;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtsto;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtnombreprod;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtidcat;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtidprovee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnactualizar;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtestado;
+        private System.Windows.Forms.MaskedTextBox txtfecha;
+        private System.Windows.Forms.MaskedTextBox txtprecio;
+        private System.Windows.Forms.MaskedTextBox txtsto;
+        private System.Windows.Forms.MaskedTextBox txtidcat;
     }
 }

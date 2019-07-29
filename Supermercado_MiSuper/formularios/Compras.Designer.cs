@@ -150,6 +150,8 @@
             // 
             // txttotal
             // 
+            this.txttotal.Enabled = false;
+            this.txttotal.HideSelection = false;
             this.txttotal.Location = new System.Drawing.Point(99, 181);
             this.txttotal.Name = "txttotal";
             this.txttotal.Size = new System.Drawing.Size(78, 20);
@@ -169,7 +171,7 @@
             this.btnagregar.Location = new System.Drawing.Point(23, 207);
             this.btnagregar.Name = "btnagregar";
             this.btnagregar.Size = new System.Drawing.Size(143, 39);
-            this.btnagregar.TabIndex = 6;
+            this.btnagregar.TabIndex = 7;
             this.btnagregar.Text = "Agregar  a Factura";
             this.btnagregar.UseVisualStyleBackColor = true;
             this.btnagregar.Click += new System.EventHandler(this.Btnagregar_Click);
@@ -192,6 +194,7 @@
             // 
             // txtprecio
             // 
+            this.txtprecio.Enabled = false;
             this.txtprecio.Location = new System.Drawing.Point(99, 138);
             this.txtprecio.Name = "txtprecio";
             this.txtprecio.Size = new System.Drawing.Size(78, 20);

@@ -174,6 +174,7 @@ namespace Supermercado_MiSuper.formularios
                             txtmarca.Text = tabla.Rows[0][7].ToString();
                             txtfecha.Text = tabla.Rows[0][8].ToString();
                             ClaseUser.IdEmpleado = Convert.ToInt32(tabla.Rows[0][0]);
+                            btnguardar.Enabled = false;
                         }
                         else
                         {
@@ -201,6 +202,7 @@ namespace Supermercado_MiSuper.formularios
             txtestado.Text = "";
             txtmarca.Text = "";
             txtfecha.Text = "";
+            btnguardar.Enabled = true;
             txtnombreprod.Focus();
         }
     }

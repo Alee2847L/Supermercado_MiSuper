@@ -37,13 +37,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtdireccion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txttelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtsexo = new System.Windows.Forms.ComboBox();
             this.txtvecescompra = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtidentidaddelcliente = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtapellidocliente = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,6 +55,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pblimpiar = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtidentidaddelcliente = new System.Windows.Forms.MaskedTextBox();
+            this.txttelefono = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -88,19 +88,19 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txttelefono);
+            this.groupBox1.Controls.Add(this.txtidentidaddelcliente);
             this.groupBox1.Controls.Add(this.txtestado);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtcorreocliente);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtdireccion);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txttelefono);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtsexo);
             this.groupBox1.Controls.Add(this.txtvecescompra);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtidentidaddelcliente);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtapellidocliente);
             this.groupBox1.Controls.Add(this.label2);
@@ -135,7 +135,7 @@
             this.txtcorreocliente.Location = new System.Drawing.Point(472, 192);
             this.txtcorreocliente.Name = "txtcorreocliente";
             this.txtcorreocliente.Size = new System.Drawing.Size(139, 20);
-            this.txtcorreocliente.TabIndex = 51;
+            this.txtcorreocliente.TabIndex = 8;
             // 
             // label8
             // 
@@ -151,7 +151,7 @@
             this.txtdireccion.Location = new System.Drawing.Point(472, 142);
             this.txtdireccion.Name = "txtdireccion";
             this.txtdireccion.Size = new System.Drawing.Size(100, 20);
-            this.txtdireccion.TabIndex = 49;
+            this.txtdireccion.TabIndex = 7;
             // 
             // label7
             // 
@@ -161,13 +161,6 @@
             this.label7.Size = new System.Drawing.Size(87, 13);
             this.label7.TabIndex = 48;
             this.label7.Text = "Direccion Cliente";
-            // 
-            // txttelefono
-            // 
-            this.txttelefono.Location = new System.Drawing.Point(472, 99);
-            this.txttelefono.Name = "txttelefono";
-            this.txttelefono.Size = new System.Drawing.Size(100, 20);
-            this.txttelefono.TabIndex = 47;
             // 
             // label6
             // 
@@ -188,7 +181,7 @@
             this.txtsexo.Location = new System.Drawing.Point(409, 52);
             this.txtsexo.Name = "txtsexo";
             this.txtsexo.Size = new System.Drawing.Size(47, 21);
-            this.txtsexo.TabIndex = 45;
+            this.txtsexo.TabIndex = 5;
             // 
             // txtvecescompra
             // 
@@ -215,13 +208,6 @@
             this.label4.Size = new System.Drawing.Size(124, 13);
             this.label4.TabIndex = 43;
             this.label4.Text = "Veces que ha Comprado";
-            // 
-            // txtidentidaddelcliente
-            // 
-            this.txtidentidaddelcliente.Location = new System.Drawing.Point(183, 142);
-            this.txtidentidaddelcliente.Name = "txtidentidaddelcliente";
-            this.txtidentidaddelcliente.Size = new System.Drawing.Size(100, 20);
-            this.txtidentidaddelcliente.TabIndex = 5;
             // 
             // label3
             // 
@@ -283,7 +269,7 @@
             this.btnbuscar.Location = new System.Drawing.Point(572, 408);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(96, 59);
-            this.btnbuscar.TabIndex = 68;
+            this.btnbuscar.TabIndex = 12;
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.Btnbuscar_Click);
             // 
@@ -295,7 +281,7 @@
             this.btneliminar.Location = new System.Drawing.Point(470, 408);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(96, 59);
-            this.btneliminar.TabIndex = 67;
+            this.btneliminar.TabIndex = 11;
             this.btneliminar.UseVisualStyleBackColor = true;
             this.btneliminar.Click += new System.EventHandler(this.Btneliminar_Click);
             // 
@@ -307,7 +293,7 @@
             this.btnactuali.Location = new System.Drawing.Point(364, 408);
             this.btnactuali.Name = "btnactuali";
             this.btnactuali.Size = new System.Drawing.Size(96, 59);
-            this.btnactuali.TabIndex = 66;
+            this.btnactuali.TabIndex = 10;
             this.btnactuali.UseVisualStyleBackColor = true;
             this.btnactuali.Click += new System.EventHandler(this.Btnactuali_Click);
             // 
@@ -319,7 +305,7 @@
             this.btnguardar.Location = new System.Drawing.Point(262, 408);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(96, 59);
-            this.btnguardar.TabIndex = 65;
+            this.btnguardar.TabIndex = 9;
             this.btnguardar.UseVisualStyleBackColor = true;
             this.btnguardar.Click += new System.EventHandler(this.Btnguardar_Click);
             // 
@@ -353,6 +339,22 @@
             this.label10.Size = new System.Drawing.Size(131, 18);
             this.label10.TabIndex = 70;
             this.label10.Text = "Agregar Compra";
+            // 
+            // txtidentidaddelcliente
+            // 
+            this.txtidentidaddelcliente.Location = new System.Drawing.Point(183, 142);
+            this.txtidentidaddelcliente.Mask = "0000-0000-00000";
+            this.txtidentidaddelcliente.Name = "txtidentidaddelcliente";
+            this.txtidentidaddelcliente.Size = new System.Drawing.Size(100, 20);
+            this.txtidentidaddelcliente.TabIndex = 4;
+            // 
+            // txttelefono
+            // 
+            this.txttelefono.Location = new System.Drawing.Point(472, 95);
+            this.txttelefono.Mask = "0000-0000";
+            this.txttelefono.Name = "txttelefono";
+            this.txttelefono.Size = new System.Drawing.Size(83, 20);
+            this.txttelefono.TabIndex = 6;
             // 
             // Cliente
             // 
@@ -397,13 +399,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtdireccion;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txttelefono;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox txtsexo;
         private System.Windows.Forms.TextBox txtvecescompra;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtidentidaddelcliente;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtapellidocliente;
         private System.Windows.Forms.Label label2;
@@ -415,5 +415,7 @@
         private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.MaskedTextBox txttelefono;
+        private System.Windows.Forms.MaskedTextBox txtidentidaddelcliente;
     }
 }

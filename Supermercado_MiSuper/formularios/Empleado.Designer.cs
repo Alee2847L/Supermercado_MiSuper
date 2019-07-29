@@ -59,8 +59,6 @@
             this.txtapellido = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txttelefono = new System.Windows.Forms.TextBox();
-            this.txtfecha = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbsex = new System.Windows.Forms.ComboBox();
@@ -70,6 +68,8 @@
             this.btnactuali = new System.Windows.Forms.Button();
             this.btneliminar = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
+            this.txtfecha = new System.Windows.Forms.MaskedTextBox();
+            this.txttelefono = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -244,6 +244,8 @@
             // 
             // gbempleado
             // 
+            this.gbempleado.Controls.Add(this.txttelefono);
+            this.gbempleado.Controls.Add(this.txtfecha);
             this.gbempleado.Controls.Add(this.btnact);
             this.gbempleado.Controls.Add(this.btnactualizar);
             this.gbempleado.Controls.Add(this.label12);
@@ -258,8 +260,6 @@
             this.gbempleado.Controls.Add(this.txtapellido);
             this.gbempleado.Controls.Add(this.label);
             this.gbempleado.Controls.Add(this.label3);
-            this.gbempleado.Controls.Add(this.txttelefono);
-            this.gbempleado.Controls.Add(this.txtfecha);
             this.gbempleado.Controls.Add(this.label6);
             this.gbempleado.Controls.Add(this.label4);
             this.gbempleado.Controls.Add(this.cmbsex);
@@ -395,20 +395,6 @@
             this.label3.TabIndex = 17;
             this.label3.Text = "Fecha Ingreso";
             // 
-            // txttelefono
-            // 
-            this.txttelefono.Location = new System.Drawing.Point(467, 56);
-            this.txttelefono.Name = "txttelefono";
-            this.txttelefono.Size = new System.Drawing.Size(100, 20);
-            this.txttelefono.TabIndex = 24;
-            // 
-            // txtfecha
-            // 
-            this.txtfecha.Location = new System.Drawing.Point(165, 97);
-            this.txtfecha.Name = "txtfecha";
-            this.txtfecha.Size = new System.Drawing.Size(100, 20);
-            this.txtfecha.TabIndex = 18;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -503,6 +489,22 @@
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.Btnbuscar_Click);
             // 
+            // txtfecha
+            // 
+            this.txtfecha.Location = new System.Drawing.Point(165, 97);
+            this.txtfecha.Mask = "00/00/0000";
+            this.txtfecha.Name = "txtfecha";
+            this.txtfecha.Size = new System.Drawing.Size(100, 20);
+            this.txtfecha.TabIndex = 17;
+            // 
+            // txttelefono
+            // 
+            this.txttelefono.Location = new System.Drawing.Point(467, 53);
+            this.txttelefono.Mask = "0000-0000";
+            this.txttelefono.Name = "txttelefono";
+            this.txttelefono.Size = new System.Drawing.Size(64, 20);
+            this.txttelefono.TabIndex = 65;
+            // 
             // Empleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,8 +567,6 @@
         private System.Windows.Forms.TextBox txtapellido;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txttelefono;
-        private System.Windows.Forms.TextBox txtfecha;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbsex;
@@ -578,5 +578,7 @@
         private System.Windows.Forms.Button btneliminar;
         private System.Windows.Forms.Button btnbuscar;
         private System.Windows.Forms.Button btnact2;
+        private System.Windows.Forms.MaskedTextBox txttelefono;
+        private System.Windows.Forms.MaskedTextBox txtfecha;
     }
 }
