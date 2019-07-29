@@ -372,6 +372,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Cliente";
+            this.Load += new System.EventHandler(this.Cliente_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).EndInit();
             this.groupBox1.ResumeLayout(false);

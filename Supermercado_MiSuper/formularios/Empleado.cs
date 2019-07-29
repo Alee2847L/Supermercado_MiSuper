@@ -119,9 +119,8 @@ namespace Supermercado_MiSuper.formularios
                         SqlDataAdapter adaptador = new SqlDataAdapter(comando);
                         using (adaptador)
                         {
-                            comando.Parameters.AddWithValue("@Empleado", ClaseUser.IdEmpleado);
                             comando.Parameters.AddWithValue("@nombreUsuario", txtnomusu.Text);
-                            comando.Parameters.AddWithValue("@passwordUsuario", usufin);
+                            comando.Parameters.AddWithValue("@passwordUsuario", txtcontrausu.Text);
                             comando.Parameters.AddWithValue("@nivelUsuario", cmbtupousu.Text);
                             comando.ExecuteNonQuery();
                         }
@@ -158,7 +157,7 @@ namespace Supermercado_MiSuper.formularios
                             comando.Parameters.AddWithValue("@apellidoEmpleado", txtapellido.Text);
                             comando.Parameters.AddWithValue("@fechaIngreso", txtfecha.Text);
                             comando.Parameters.AddWithValue("@puesto", txtPuesto.Text);
-                            comando.Parameters.AddWithValue("@estadoEmpleado", txtestado.Text);
+                            comando.Parameters.AddWithValue("@estado", txtestado.Text);
                             comando.Parameters.AddWithValue("@sexo", cmbsex.Text);
                             comando.Parameters.AddWithValue("@telefono", txttelefono.Text);
                             comando.Parameters.AddWithValue("@direccion", txtdirec.Text);
@@ -203,7 +202,7 @@ namespace Supermercado_MiSuper.formularios
                             comando.Parameters.AddWithValue("@Empleado", ClaseUser.IdEmpleado);
                             comando.Parameters.AddWithValue("@nombreUsuario", txtnomusu.Text);
                             comando.Parameters.AddWithValue("@passwordUsuario", usufin);
-                            comando.Parameters.AddWithValue("@estadoUsuario", txtestadousu.Text);
+                            comando.Parameters.AddWithValue("@estado", txtestadousu.Text);
                             comando.Parameters.AddWithValue("@nivelUsuario", cmbtupousu.Text);
                             comando.ExecuteNonQuery();
                         }
@@ -234,7 +233,7 @@ namespace Supermercado_MiSuper.formularios
                         using (adaptador)
                         {
                             comando.Parameters.AddWithValue("@Empleado", ClaseUser.IdEmpleado);
-                            comando.Parameters.AddWithValue("@nombreEmpleado", txtnomemple.Text);
+                            comando.Parameters.AddWithValue("@nombre", txtnomemple.Text);
                             comando.ExecuteNonQuery();
                             MessageBox.Show(" Datos Eliminados");
                         }
@@ -265,7 +264,7 @@ namespace Supermercado_MiSuper.formularios
                         using (adaptador)
                         {
                             comando.Parameters.AddWithValue("@Empleado", ClaseUser.IdEmpleado);
-                            comando.Parameters.AddWithValue("@nombreUsuario", txtnomusu.Text);
+                            comando.Parameters.AddWithValue("@nombre", txtnomusu.Text);
                             comando.ExecuteNonQuery();
                         }
                     }

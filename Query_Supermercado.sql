@@ -134,7 +134,7 @@ CREATE TABLE REGISTRO.Factura
  idCliente INT NOT NULL,
  idEmpleado INT NOT NULL,
  fecha DATETIME DEFAULT GETDATE(),
- total DECIMAL(10,2) NULL 
+ total DECIMAL(10,2) default 0 
  --total DECIMAL(10,2) NULL
 )
 
@@ -241,27 +241,19 @@ GO
 
 
 --PROCEDIMIENTO ELIMINAR CLIENTE--PROCESO DE ELIMINAR EN CLIENTES
-CREATE PROCEDURE ELIMINARCLIENTE @Empleado INT, @Nombre INT
+
+CREATE PROCEDURE ELIMINARCLIENTE @Empleado INT, @Nombre NVARCHAR
 AS
 BEGIN TRANSACTION
 	BEGIN TRY
 		IF EXISTS(SELECT * FROM PERSONA.Empleado WHERE idEmpleado=@Empleado) --Debe existir ese empleado
 		BEGIN
 			if exists(SELECT * FROM PERSONA.Cliente WHERE nombreCliente=@Nombre) --Debe existir un cliente con ese codigo
-			BEGIN
-				if isnull((select vecesCompra FROM PERSONA.Cliente WHERE nombreCliente=@Nombre), 0)=0 --Si el cliente nunca ha hecho una compre, se puede eliminar
-				BEGIN
-				  DELETE FROM PERSONA.Cliente WHERE nombreCliente=@Nombre
-				  INSERT INTO REGISTRO.Movimiento(operacion, tabla, descripcion, encargado)
-				  VALUES ('SE ELIMINO CLIENTE:'+ CAST(@Nombre AS VARCHAR), 'CLIENTES', 'ELIMINACION CORRECTA', @Empleado);
-				END
-				ELSE
 				BEGIN
 					update PERSONA.Cliente SET estadoCliente='INACTIVO/A' WHERE nombreCliente=@Nombre; --Si el cliente tiene compras no se elimina, solo se le cambia el estado
 					INSERT INTO REGISTRO.Movimiento(operacion, tabla, descripcion, encargado)
 					VALUES ('SE CAMBIO ESTADO CLIENTE:'+ CAST(@Nombre AS VARCHAR) + ' A INACTIVO', 'CLIENTE', 'CLIENTE INACTIVO', @Empleado);
 			    END
-		    END
 		END
 		COMMIT TRANSACTION
 	END TRY
@@ -289,18 +281,19 @@ begin TRANSACTION
 	END CATCH
 GO
 
---PROCEDIMIENTO DE ACTUALIZAR EMPLEADO
-CREATE PROCEDURE ACTUALIZAREMPLEADO  @Empleado INT,  @Codigo INT, @nombreEmpleado NVARCHAR(50), @apellidoEmpleado NVARCHAR(80), @fechaIngreso NVARCHAR(8), @puesto NVARCHAR(60),@estado NVARCHAR(25), @sexo CHAR(1), @telefono CHAR(9),@direccion TEXT, @correoEmpleado NVARCHAR(80)
+--PROCEDIMIENTO DE ACTUALIZAR EMPLEADO 
+
+CREATE PROCEDURE ACTUALIZAREMPLEADO  @Empleado INT, @nombreEmpleado NVARCHAR(50), @apellidoEmpleado NVARCHAR(80), @fechaIngreso NVARCHAR(8), @puesto NVARCHAR(60),@estado NVARCHAR(25), @sexo CHAR(1), @telefono CHAR(9),@direccion TEXT, @correoEmpleado NVARCHAR(80)
 AS
 BEGIN TRANSACTION 
 	BEGIN TRY
 		IF EXISTS(SELECT * FROM PERSONA.Empleado WHERE idEmpleado=@Empleado) 
 		BEGIN
-			if exists(SELECT * FROM PERSONA.Empleado WHERE idEmpleado=@Codigo)
+			if exists(SELECT * FROM PERSONA.Empleado WHERE nombreEmpleado=@nombreEmpleado)
 			BEGIN
 			UPDATE PERSONA.EMPLEADO SET nombreEmpleado = @nombreEmpleado, apellidoEmpleado = @apellidoEmpleado,fechaIngreso = @fechaIngreso, puesto = @puesto, estadoEmpleado = @estado ,sexo = @sexo, telefono = @telefono, direccion = @direccion, correoEmpleado = @correoEmpleado WHERE nombreEmpleado=@nombreEmpleado;
 			 INSERT INTO REGISTRO.Movimiento(operacion, tabla, descripcion, encargado)
-			 VALUES ('SE ACTUALIZO EMPLEADO:' + CAST(@Codigo AS VARCHAR),  'EMPLEADO', 'ACTUALIZACIÓN EXITOSA', @Empleado);
+			 VALUES ('SE ACTUALIZO EMPLEADO:' + CAST(@nombreEmpleado AS VARCHAR),  'EMPLEADO', 'ACTUALIZACIÓN EXITOSA', @Empleado);
 			END
 		END
 		COMMIT TRANSACTION
@@ -354,7 +347,8 @@ GO
 
 
 --PROCEDIMIENTO DE ACTUALIZAR USUARIO	
-CREATE PROCEDURE ACTUALIZARUSUARIO @Empleado INT,@codigo INT, @nombreUsuario NVARCHAR(25), @passwordUsuario NVARCHAR(12),@estado NVARCHAR(25), @nivelUsuario VARCHAR(15)
+
+CREATE PROCEDURE ACTUALIZARUSUARIO @Empleado INT, @nombreUsuario NVARCHAR(25), @passwordUsuario NVARCHAR(12),@estado NVARCHAR(25), @nivelUsuario VARCHAR(15)
 AS
 BEGIN TRANSACTION 
 	BEGIN TRY-- se usa el transaction para evitar errores	
@@ -364,7 +358,7 @@ BEGIN TRANSACTION
 			BEGIN
 			UPDATE PERSONA.Usuario SET nombreUsuario = @nombreUsuario, passwordUsuario = @passwordUsuario, estadoUsuario = @estado, nivelUsuario = @nivelUsuario WHERE nombreUsuario=@nombreUsuario;
 			 INSERT INTO REGISTRO.MOVIMIENTO(operacion, tabla, descripcion, encargado)
-			 VALUES ('SE ACTUALIZO EL USUARIO:' + CAST(@codigo AS VARCHAR),  'USUARIO', 'ACTUALIZACIÓN EXITOSA', @Empleado);
+			 VALUES ('SE ACTUALIZO EL USUARIO:' + CAST(@nombreUsuario AS VARCHAR),  'USUARIO', 'ACTUALIZACIÓN EXITOSA', @Empleado);
 			END
 		END
 		COMMIT TRANSACTION
@@ -738,7 +732,7 @@ go
 EXEC AGREGARCLIENTE 01,'carlos', 'manuel', '25455555', 'M', '965215', 'tegus', 'Crishy@yahoo.com'
 go
 
-EXEC ACTUALIZARCLIENTE 01,'Peperfr', 'Hernandézz', '0313199900418','M', '97895670', 'Comayagua', 'Crishy@yahoo.com' 
+EXEC ACTUALIZARCLIENTE 04,'Peperfr', 'Hernandézz', '0313199900418','M', '97895670', 'Comayagua', 'Crishy@yahoo.com' 
 go
 
 EXEC ELIMINARCLIENTE 01,01
@@ -848,10 +842,6 @@ GO
 SELECT * from REGISTRO.Factura
 GO
 
-select * from REGISTRO.Factura where idCliente=1 and idEmpleado=1
-go
-
-delete 
 
 SELECT * FROM REGISTRO.DetalleFactura
 GO
@@ -860,5 +850,10 @@ SELECT * FROM REGISTRO.Movimiento
 GO
 SELECT * FROM PERSONA.Usuario
 GO
+CREATE TRIGGER calculartotalfactura
+
+select SUM(total) as total from REGISTRO.DetalleFactura where idFactura =6
+
+select * from REGISTRO.DetalleFactura where idFactura = 12 
 */
 */

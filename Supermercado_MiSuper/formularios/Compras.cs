@@ -18,6 +18,7 @@ namespace Supermercado_MiSuper.formularios
         Clase_Datos dat = new Clase_Datos();
         DataTable tabla;
         int c = 0;
+        string suma;
 
         public Compras()
         {
@@ -130,7 +131,7 @@ namespace Supermercado_MiSuper.formularios
                         if (conexion.Estado == 1)
                         {
                             tabla.Reset();
-                            string query = string.Format(("select MAX(idFactura) as id from REGISTRO.Factura "), txtide.Text, txtidemp.Text);
+                            string query = string.Format(("select MAX(idFactura) as id from REGISTRO.Factura"));
                             SqlCommand comando = new SqlCommand(query, conexion.Conexion);
                             comando.CommandType = CommandType.Text;
                             SqlDataAdapter adaptador = new SqlDataAdapter(comando);
@@ -139,7 +140,7 @@ namespace Supermercado_MiSuper.formularios
                             {
 
                                 ClaseUser.Idfactura = Convert.ToInt32(tabla.Rows[0][0]);
-                                MessageBox.Show("{0}", ClaseUser.Idfactura.ToString());
+                                txtfactura.Text = tabla.Rows[0][0].ToString();
                             }
                             else
                             {
@@ -180,19 +181,47 @@ namespace Supermercado_MiSuper.formularios
                             {
                                 comando.Parameters.AddWithValue("@EMPLEADO", ClaseUser.IdEmpleado);
                                 comando.Parameters.AddWithValue("@ID_PRODUCTO", txtcodigo.Text);
-                                comando.Parameters.AddWithValue("@IDFACTURA", ClaseUser.Idfactura);
+                                comando.Parameters.AddWithValue("@IDFACTURA",txtfactura.Text);
                                 comando.Parameters.AddWithValue("@CANTIDAD", txtcantidad.Text);
                                 comando.Parameters.AddWithValue("@TOTAL", txttotal.Text);
                                 comando.ExecuteNonQuery();
                                 MessageBox.Show(" Datos Insertado");
                             }
-
                         }
                     }
                     catch (Exception ex)
                     {
 
                         MessageBox.Show(" Datos No Insertado" + ex.Message);
+                    }
+                    //actualizar el total de la factura
+
+                    try
+                    {
+                        tabla.Reset();
+                        string query = string.Format(("select SUM(total) as total from REGISTRO.DetalleFactura where idFactura = {0}"), txtfactura.Text);
+                        SqlCommand comando = new SqlCommand(query, conexion.Conexion);
+                        comando.CommandType = CommandType.Text;
+                        SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                        adaptador.Fill(tabla);
+                        if (tabla.Rows.Count > 0)
+                        {
+
+                            suma = tabla.Rows[0][0].ToString();
+                            MessageBox.Show("{0} suma", suma);
+                            comando.CommandText = string.Format("UPDATE REGISTRO.factura SET total={0} where idFactura={1}", suma, txtfactura.Text);
+                            comando.ExecuteNonQuery();
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("factura no encontrada");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
                     }
                 }
 
@@ -228,5 +257,28 @@ namespace Supermercado_MiSuper.formularios
             }
                 
         }
+
+        private void Txtcantidad_Leave(object sender, EventArgs e)
+        {
+            if(txtcantidad.Text!="")
+            {
+                txttotal.Text = (Convert.ToDouble(txtprecio.Text) * Convert.ToDouble(txtcantidad.Text)).ToString();
+            }
+        }
+
+        private void Pblimpiar_Click(object sender, EventArgs e)
+        {
+            txtide.Text = "";
+            txtfactura.Text = "";
+            txtcantidad.Text = "";
+            txtcodigo.Text = "";
+            txttotal.Text = "";
+            txtnombre.Text = "";
+            txtnombreprod.Text = "";
+            dat.cargarEmpleado(dgvproductos);
+            txtide.Focus();
+            c = 0;
+        }
+
     }
 }

@@ -68,7 +68,6 @@ namespace Supermercado_MiSuper
                     btnpuntodeventa.Visible = true;
                     btnproductos.Visible = false;
                     btncliente.Visible = false;
-                    btnreporte.Visible = false;
 
                 }
                 else
@@ -78,7 +77,6 @@ namespace Supermercado_MiSuper
                     btnpuntodeventa.Visible = false;
                     btnproductos.Visible = true;
                     btncliente.Visible = true;
-                    btnreporte.Visible = true;
                 }
                 lbluser.Text = ClaseUser.Nombre.ToString();
                 lblnivel.Text = ClaseUser.Nivel.ToString();
@@ -115,7 +113,6 @@ namespace Supermercado_MiSuper
                 btnpuntodeventa.Visible = true;
                 btnproductos.Visible = false;
                 btncliente.Visible = false;
-                btnreporte.Visible = false;
             }
             else
             {
@@ -124,7 +121,6 @@ namespace Supermercado_MiSuper
                 btnpuntodeventa.Visible = false;
                 btnproductos.Visible = true;
                 btncliente.Visible = true;
-                btnreporte.Visible = true;
             }
             lbluser.Text = ClaseUser.Nombre.ToString();
             lblnivel.Text = ClaseUser.Nivel.ToString();
@@ -151,7 +147,7 @@ namespace Supermercado_MiSuper
                 btnpuntodeventa.Visible = true;
                 btnproductos.Visible = false;
                 btncliente.Visible = false;
-                btnreporte.Visible = false;
+                
             }
             else
             {
@@ -160,7 +156,7 @@ namespace Supermercado_MiSuper
                 btnpuntodeventa.Visible = false;
                 btnproductos.Visible = true;
                 btncliente.Visible = true;
-                btnreporte.Visible = true;
+                
 
             }
             lbluser.Text = ClaseUser.Nombre.ToString();

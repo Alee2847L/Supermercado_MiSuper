@@ -101,8 +101,8 @@ namespace Supermercado_MiSuper.formularios
                             comando.Parameters.AddWithValue("@nombreCliente", txtnombreCliente.Text);
                             comando.Parameters.AddWithValue("@apellidoCliente", txtapellidocliente.Text);
                             comando.Parameters.AddWithValue("@identidad", txtidentidaddelcliente.Text);
-                            comando.Parameters.AddWithValue("@estadoCliente", txtestado.Text);
-                            comando.Parameters.AddWithValue("@vecesCompra", txtvecescompra.Text);
+                            comando.Parameters.AddWithValue("@estado", txtestado.Text);
+                            //comando.Parameters.AddWithValue("@vecesCompra", txtvecescompra.Text);
                             comando.Parameters.AddWithValue("@sexo", txtsexo.Text);
                             comando.Parameters.AddWithValue("@telefono", txttelefono.Text);
                             comando.Parameters.AddWithValue("@direccion", txtdireccion.Text);
@@ -139,7 +139,7 @@ namespace Supermercado_MiSuper.formularios
                         using (adaptador)
                         {
                             comando.Parameters.AddWithValue("@Empleado", ClaseUser.IdEmpleado);
-                            comando.Parameters.AddWithValue("@nombreCliente", txtnombreCliente.Text);
+                            comando.Parameters.AddWithValue("@Nombre", txtnombreCliente.Text);
                             comando.ExecuteNonQuery();
                             MessageBox.Show(" Datos Eliminados");
                         }
@@ -189,6 +189,11 @@ namespace Supermercado_MiSuper.formularios
             compras.txtnombre.Text = ClaseUser.Nombrecliente;
             compras.gbdatos.Enabled = false;
             compras.ShowDialog();
+        }
+
+        private void Cliente_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

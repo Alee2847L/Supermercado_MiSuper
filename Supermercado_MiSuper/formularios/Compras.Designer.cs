@@ -57,6 +57,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtidemp = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtfactura = new System.Windows.Forms.TextBox();
+            this.pblimpiar = new System.Windows.Forms.PictureBox();
             this.gbdatos.SuspendLayout();
             this.gbdetalles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
@@ -64,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sUPERMERCADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvfactura)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pblimpiar)).BeginInit();
             this.SuspendLayout();
             // 
             // gbdatos
@@ -198,6 +203,7 @@
             this.txtcantidad.Name = "txtcantidad";
             this.txtcantidad.Size = new System.Drawing.Size(78, 20);
             this.txtcantidad.TabIndex = 6;
+            this.txtcantidad.Leave += new System.EventHandler(this.Txtcantidad_Leave);
             // 
             // txtcodigo
             // 
@@ -310,10 +316,48 @@
             // 
             // txtidemp
             // 
-            this.txtidemp.Location = new System.Drawing.Point(352, 12);
+            this.txtidemp.Enabled = false;
+            this.txtidemp.Location = new System.Drawing.Point(398, 13);
             this.txtidemp.Name = "txtidemp";
-            this.txtidemp.Size = new System.Drawing.Size(100, 20);
+            this.txtidemp.Size = new System.Drawing.Size(39, 20);
             this.txtidemp.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(331, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Id Empleado";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(462, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Factura N.";
+            // 
+            // txtfactura
+            // 
+            this.txtfactura.Enabled = false;
+            this.txtfactura.Location = new System.Drawing.Point(521, 14);
+            this.txtfactura.Name = "txtfactura";
+            this.txtfactura.Size = new System.Drawing.Size(39, 20);
+            this.txtfactura.TabIndex = 10;
+            // 
+            // pblimpiar
+            // 
+            this.pblimpiar.Image = global::Supermercado_MiSuper.Properties.Resources.limpiar_png_6;
+            this.pblimpiar.Location = new System.Drawing.Point(862, 12);
+            this.pblimpiar.Name = "pblimpiar";
+            this.pblimpiar.Size = new System.Drawing.Size(65, 52);
+            this.pblimpiar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pblimpiar.TabIndex = 59;
+            this.pblimpiar.TabStop = false;
+            this.pblimpiar.Click += new System.EventHandler(this.Pblimpiar_Click);
             // 
             // Compras
             // 
@@ -321,6 +365,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(939, 450);
+            this.Controls.Add(this.pblimpiar);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtfactura);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtidemp);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -340,6 +388,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sUPERMERCADODataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvfactura)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pblimpiar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,5 +422,9 @@
         private System.Windows.Forms.TextBox txttotal;
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.TextBox txtidemp;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox txtfactura;
+        private System.Windows.Forms.PictureBox pblimpiar;
     }
 }
